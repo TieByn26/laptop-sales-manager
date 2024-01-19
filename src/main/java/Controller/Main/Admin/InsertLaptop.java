@@ -3,8 +3,10 @@ package Controller.Main.Admin;
 import DAO.LaptopDAO;
 import Model.Laptop.Laptop;
 import ViewMain.AdminView.AddLaptop;
+import ViewMain.AdminView.DeleteLaptop;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,13 +19,14 @@ public class InsertLaptop implements ActionListener {
         this.addLaptop = addLaptop;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         ArrayList<Laptop> list = LaptopDAO.getLaptopDAO().selectAll();
         String src = e.getActionCommand();
-        int ID = Integer.parseInt(new String(addLaptop.getjTextField1().getText()));
         int count = 0;
         if (src.equals("INSERT")) {
+            int ID = Integer.parseInt(new String(addLaptop.getjTextField1().getText()));
             for (Laptop laptop : list){
                 if (laptop.getID() == ID){
                     count = 1;
@@ -34,6 +37,13 @@ public class InsertLaptop implements ActionListener {
                     addLaptop.getjTextField6().setText(laptop.getQuantity()+"");
                     addLaptop.getjTextField7().setText(laptop.getAbout());
                     addLaptop.getjTextField8().setText(laptop.getPicture());
+                    addLaptop.setImageIcon1(new ImageIcon(laptop.getPicture()));
+                    addLaptop.getjPanel2().removeAll();
+                    ImageIcon imageIcon = new ImageIcon(addLaptop.getImageIcon1().getImage().getScaledInstance(300, 280, Image.SCALE_SMOOTH));
+                    JLabel imageJlabel = new JLabel(imageIcon);
+                    addLaptop.getjPanel2().add(imageJlabel);
+                    addLaptop.revalidate();
+                    addLaptop.repaint();
                     break;
                 }
             }

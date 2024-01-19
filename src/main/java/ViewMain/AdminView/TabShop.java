@@ -210,6 +210,8 @@ public class TabShop extends JPanel {
         jCheckBox2.addChangeListener(classifyLaptop);
         jCheckBox3.addChangeListener(classifyLaptop);
         jCheckBox4.addChangeListener(classifyLaptop);
+        jButton1.addActionListener(searchLaptop);
+        jButton2.addActionListener(searchLaptop);
     }
 
     public ArrayList<Laptop> getList() {

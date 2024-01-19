@@ -1,20 +1,14 @@
 package ViewMain.AdminView;
 
-import Controller.Main.Admin.Addnew;
-import Controller.Main.Admin.Addpicture;
-import Controller.Main.Admin.InsertLaptop;
-import Controller.Main.Admin.UpdateLaptop;
+import Controller.Main.Admin.*;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AddLaptop extends JFrame {
+public class DeleteLaptop extends JFrame {
     private ImageIcon imageIcon1;
-    private InsertLaptop insertLaptop = new InsertLaptop(this);
-    private UpdateLaptop updateLaptop = new UpdateLaptop(this);
-    private Addnew addnew = new Addnew(this);
-    private Addpicture addpicture = new Addpicture(this);
+    private InsertLaptop2 insertLaptop2 = new InsertLaptop2(this);
     private JPanel jPanel2;
     private JPanel jPanel1;
     private SpringLayout layoutMain = new SpringLayout();
@@ -30,7 +24,7 @@ public class AddLaptop extends JFrame {
     private JTextField jTextField6;
     private JTextField jTextField7;
     private JTextField jTextField8;
-    public AddLaptop(){
+    public DeleteLaptop(){
         this.setSize(700,450);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -51,10 +45,7 @@ public class AddLaptop extends JFrame {
         jTextField7 = new JTextField();
         jTextField8 = new JTextField();
         jButton1 = new JButton("INSERT");
-        jButton2 = new JButton("ADDNEW");
-        jButton3 = new JButton("ADDPIC");
-        jButton4 = new JButton("UPDATE");
-
+        jButton2 = new JButton("DELETE");
         jPanel1.setLayout(layoutMain);
 
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField1,-180,SpringLayout.VERTICAL_CENTER,jPanel1);
@@ -87,11 +78,6 @@ public class AddLaptop extends JFrame {
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton2,130,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton2,240,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton3,130,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton3,-240,SpringLayout.HORIZONTAL_CENTER,jPanel1);
-
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton4,130,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton4,-85,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jPanel2,-55,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jPanel2,-160,SpringLayout.HORIZONTAL_CENTER,jPanel1);
@@ -140,13 +126,10 @@ public class AddLaptop extends JFrame {
         jTextField7.setPreferredSize(new Dimension(300,30));
         jTextField8.setPreferredSize(new Dimension(300,30));
         jButton1.setPreferredSize(new Dimension(150,50));
-        jButton1.addActionListener(insertLaptop);
+        jButton1.addActionListener(insertLaptop2);
         jButton2.setPreferredSize(new Dimension(150,50));
-        jButton2.addActionListener(addnew);
-        jButton3.setPreferredSize(new Dimension(150,50));
-        jButton3.addActionListener(addpicture);
-        jButton4.setPreferredSize(new Dimension(150,50));
-        jButton4.addActionListener(updateLaptop);
+        jButton2.addActionListener(insertLaptop2);
+
 
         jPanel1.add(jTextField1);
         jPanel1.add(jTextField2);
@@ -158,8 +141,6 @@ public class AddLaptop extends JFrame {
         jPanel1.add(jTextField8);
         jPanel1.add(jButton1);
         jPanel1.add(jButton2);
-        jPanel1.add(jButton3);
-        jPanel1.add(jButton4);
         jPanel1.add(jPanel2);
         this.add(jPanel1);
 
@@ -298,6 +279,6 @@ public class AddLaptop extends JFrame {
     }
 
     public static void main(String[] args) {
-        new AddLaptop();
+        new DeleteLaptop();
     }
 }
