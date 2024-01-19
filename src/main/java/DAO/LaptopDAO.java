@@ -14,13 +14,16 @@ public class LaptopDAO implements DAOinterface<Laptop> {
     @Override
     public int insert(Laptop laptop) {
         try (Connection con = Connect.getConnection()){
-            String sql ="INSERT INTO Laptop(LapID, Name, Price, Type, About) VALUE(?,?,?,?,?)";
+            String sql ="INSERT INTO Laptop(LapID, Name, Price, Cprice, Type, About, Quantity, Picture) VALUES(?,?,?,?,?,?,?,?)";
             try(PreparedStatement pstmt = con.prepareStatement(sql)){
                 pstmt.setInt(1,laptop.getID());
                 pstmt.setString(2,laptop.getName());
                 pstmt.setDouble(3,laptop.getPrice());
-                pstmt.setString(4,laptop.getType());
-                pstmt.setString(5,laptop.getAbout());
+                pstmt.setDouble(4,laptop.getCprice());
+                pstmt.setString(5,laptop.getType());
+                pstmt.setString(6,laptop.getAbout());
+                pstmt.setInt(7,laptop.getQuantity());
+                pstmt.setString(8,laptop.getPicture());
 
                 int ketqua = pstmt.executeUpdate();
                 return ketqua;
@@ -34,13 +37,16 @@ public class LaptopDAO implements DAOinterface<Laptop> {
     @Override
     public int update(Laptop laptop) {
         try (Connection con = Connect.getConnection()){
-            String sql = "UPDATE laptop SET Name=?,Price=?,Type=?,About=? WHER LapID=? ";
+            String sql = "UPDATE laptop SET Name=?,Price=?,Cprice =?,Type=?,About=?,Quantity=?,Picture=? WHERE LapID=? ";
             try (PreparedStatement pstmt = con.prepareStatement(sql)){
                 pstmt.setString(1, laptop.getName());
                 pstmt.setDouble(2, laptop.getPrice());
-                pstmt.setString(3, laptop.getType());
-                pstmt.setString(4, laptop.getAbout());
-                pstmt.setInt(5, laptop.getID());
+                pstmt.setDouble(3, laptop.getCprice());
+                pstmt.setString(4, laptop.getType());
+                pstmt.setString(5, laptop.getAbout());
+                pstmt.setInt(6, laptop.getQuantity());
+                pstmt.setString(7, laptop.getPicture());
+                pstmt.setInt(8, laptop.getID());
                 pstmt.executeUpdate();
             }
         }catch (SQLException e) {
@@ -75,10 +81,13 @@ public class LaptopDAO implements DAOinterface<Laptop> {
                     int LapID = rs.getInt("LapID");
                     String Name = rs.getString("Name");
                     Double Price = rs.getDouble("Price");
-                    String Type = rs.getNString("Type");
+                    Double Cprice = rs.getDouble("Cprice");
+                    String Type = rs.getString("Type");
                     String About = rs.getString("About");
+                    int Quantity = rs.getInt("Quantity");
+                    String Picture = rs.getString("Picture");
 
-                    Laptop lap = new Laptop(LapID, Name, Price, Type, About);
+                    Laptop lap = new Laptop(LapID, Name, Price,Cprice, Type, About ,Quantity,Picture);
                     ketqua.add(lap);
                 }
             }
