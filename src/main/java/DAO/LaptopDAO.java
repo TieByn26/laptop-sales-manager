@@ -55,6 +55,20 @@ public class LaptopDAO implements DAOinterface<Laptop> {
         return 0;
     }
 
+    public int update2(Laptop laptop) {
+        try (Connection con = Connect.getConnection()){
+            String sql = "UPDATE laptop SET Quantity=? WHERE LapID=? ";
+            try (PreparedStatement pstmt = con.prepareStatement(sql)){
+                pstmt.setInt(1, laptop.getQuantity());
+                pstmt.setInt(2, laptop.getID());
+                pstmt.executeUpdate();
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     @Override
     public int delete(Laptop laptop) {
         try (Connection con = Connect.getConnection()){

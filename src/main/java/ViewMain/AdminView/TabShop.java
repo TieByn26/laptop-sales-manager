@@ -4,6 +4,7 @@ import Controller.Main.Admin.ClassifyLaptop;
 import Controller.Main.Admin.SearchLaptop;
 import DAO.LaptopDAO;
 import Model.Laptop.Laptop;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 public class TabShop extends JPanel {
     private SearchLaptop searchLaptop = new SearchLaptop(this);
     private ClassifyLaptop classifyLaptop = new ClassifyLaptop(this);
-    private ArrayList<Laptop> list = LaptopDAO.getLaptopDAO().selectAll();
     private DefaultTableModel model ;
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JTable jTable1 ;
@@ -33,12 +33,13 @@ public class TabShop extends JPanel {
     private JCheckBox jCheckBox4 = new JCheckBox("Out of stock");
     private JButton jButton1 = new JButton("Add Laptop");
     private JButton jButton2 = new JButton("Delete Laptop");
+    private JButton jButton3 = new JButton("Refresh");
 
 
     public TabShop() {
         this.setPreferredSize(new Dimension(1020, 750));
-        this.setBackground(Color.WHITE);
         this.setLayout(layoutMain);
+        this.setBackground(Color.lightGray);
         this.initJ();
         this.initTable();
     }
@@ -125,6 +126,9 @@ public class TabShop extends JPanel {
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton2,-200,SpringLayout.VERTICAL_CENTER,this);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton2,340,SpringLayout.HORIZONTAL_CENTER,this);
 
+        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton3,320,SpringLayout.VERTICAL_CENTER,this);
+        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton3,0,SpringLayout.HORIZONTAL_CENTER,this);
+
         layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,scrollPane1,0,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,scrollPane1,0,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
@@ -154,18 +158,29 @@ public class TabShop extends JPanel {
         jLabel4.setOpaque(true);
 
         jTextField1.setPreferredSize(new Dimension(200,40));
-
+        PromptSupport.setPrompt("Search by ID", jTextField1);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField1);
+        PromptSupport.setForeground(Color.GRAY, jTextField1);
         jTextField2.setPreferredSize(new Dimension(200,40));
+        PromptSupport.setPrompt("Search by Name", jTextField2);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField2);
+        PromptSupport.setForeground(Color.GRAY, jTextField2);
 
         jCheckBox1.setPreferredSize(new Dimension(200,40));
+        jCheckBox1.setOpaque(true);
         jCheckBox2.setPreferredSize(new Dimension(200,40));
+        jCheckBox2.setOpaque(true);
         jCheckBox3.setPreferredSize(new Dimension(200,40));
+        jCheckBox3.setOpaque(true);
         jCheckBox4.setPreferredSize(new Dimension(200,40));
+        jCheckBox4.setOpaque(true);
         jButton1.setPreferredSize(new Dimension(200,40));
         jButton2.setPreferredSize(new Dimension(200,40));
+        jButton3.setPreferredSize(new Dimension(200,40));
 
         jTable1.setPreferredSize(new Dimension(947,453));
         scrollPane1.setPreferredSize(new Dimension(947,453));
+
 
         this.add(jPanel1);
         this.add(jLabel1);
@@ -180,9 +195,10 @@ public class TabShop extends JPanel {
         this.add(jCheckBox4);
         this.add(jButton1);
         this.add(jButton2);
-
+        this.add(jButton3);
     }
     public void initTable(){
+        ArrayList<Laptop> list = LaptopDAO.getLaptopDAO().selectAll();
         String[] columNames = {"ID","Name product","Price","Capital price","Type","Quantity"};
         for (String columName : columNames){
             model.addColumn(columName);
@@ -194,12 +210,13 @@ public class TabShop extends JPanel {
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
 
-        jTable1.setRowHeight(40);
+        jTable1.setRowHeight(30);
 
         for (Laptop laptop : list){
             Object[] data = {laptop.getID(),laptop.getName(),laptop.getPrice(),laptop.getCprice(),laptop.getType(),laptop.getQuantity()};
             model.addRow(data);
         }
+        model.fireTableDataChanged();
         jTextField1.getDocument().addDocumentListener(searchLaptop);
         jTextField2.getDocument().addDocumentListener(searchLaptop);
         buttonGroup.add(jCheckBox1);
@@ -212,11 +229,12 @@ public class TabShop extends JPanel {
         jCheckBox4.addChangeListener(classifyLaptop);
         jButton1.addActionListener(searchLaptop);
         jButton2.addActionListener(searchLaptop);
+        jButton3.addActionListener(searchLaptop);
+        ListSelectionModel selectionModel = jTable1.getSelectionModel();
+        selectionModel.addListSelectionListener(searchLaptop);
     }
 
-    public ArrayList<Laptop> getList() {
-        return list;
-    }
+
 
     public DefaultTableModel getModel() {
         return model;
@@ -258,6 +276,14 @@ public class TabShop extends JPanel {
         return jTextField2;
     }
 
+    public ButtonGroup getButtonGroup() {
+        return buttonGroup;
+    }
+
+    public void setButtonGroup(ButtonGroup buttonGroup) {
+        this.buttonGroup = buttonGroup;
+    }
+
     public SpringLayout getLayoutMain() {
         return layoutMain;
     }
@@ -288,6 +314,10 @@ public class TabShop extends JPanel {
 
     public JButton getjButton2() {
         return jButton2;
+    }
+
+    public void setModel(DefaultTableModel model) {
+        this.model = model;
     }
 
     public static void main(String[] args) {

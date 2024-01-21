@@ -1,30 +1,28 @@
 package ViewMain.AdminView;
 
-import Controller.Main.Admin.*;
+import Controller.Main.Admin.Addnew;
+import Controller.Main.Admin.Addpicture;
+import Controller.Main.Admin.InsertLaptop;
+import Controller.Main.Admin.UpdateLaptop;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class DeleteLaptop extends JFrame {
+public class LaptopInformation extends JFrame {
     private ImageIcon imageIcon1;
-    private InsertLaptop2 insertLaptop2 = new InsertLaptop2(this);
     private JPanel jPanel2;
     private JPanel jPanel1;
     private SpringLayout layoutMain = new SpringLayout();
-    private JButton jButton1;
-    private JButton jButton2;
-    private JButton jButton3;
-    private JButton jButton4;
     private JTextField jTextField1;
     private JTextField jTextField2;
     private JTextField jTextField3;
     private JTextField jTextField4;
     private JTextField jTextField5;
     private JTextField jTextField6;
-    private JTextField jTextField7;
-    private JTextField jTextField8;
-    public DeleteLaptop(){
+    private JTextArea jTextArea;
+
+    public LaptopInformation(){
         this.setSize(700,450);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -42,10 +40,8 @@ public class DeleteLaptop extends JFrame {
         jTextField4 = new JTextField();
         jTextField5 = new JTextField();
         jTextField6 = new JTextField();
-        jTextField7 = new JTextField();
-        jTextField8 = new JTextField();
-        jButton1 = new JButton("INSERT");
-        jButton2 = new JButton("DELETE");
+        jTextArea = new JTextArea();
+
         jPanel1.setLayout(layoutMain);
 
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField1,-180,SpringLayout.VERTICAL_CENTER,jPanel1);
@@ -66,20 +62,10 @@ public class DeleteLaptop extends JFrame {
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField6,-5,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextField6,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField7,30,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextField7,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
+        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextArea,65,SpringLayout.VERTICAL_CENTER,jPanel1);
+        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextArea,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField8,65,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextField8,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
-
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton1,130,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton1,85,SpringLayout.HORIZONTAL_CENTER,jPanel1);
-
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jButton2,130,SpringLayout.VERTICAL_CENTER,jPanel1);
-        layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton2,240,SpringLayout.HORIZONTAL_CENTER,jPanel1);
-
-
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jPanel2,-55,SpringLayout.VERTICAL_CENTER,jPanel1);
+        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jPanel2,-45,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jPanel2,-160,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
         PromptSupport.setPrompt("Product ID", jTextField1);
@@ -94,41 +80,41 @@ public class DeleteLaptop extends JFrame {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField3);
         PromptSupport.setForeground(Color.GRAY, jTextField3);
 
-        PromptSupport.setPrompt("Product cost price", jTextField4);
+        PromptSupport.setPrompt("Product type", jTextField4);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField4);
         PromptSupport.setForeground(Color.GRAY, jTextField4);
 
-        PromptSupport.setPrompt("Product type", jTextField5);
+        PromptSupport.setPrompt("The number of products", jTextField5);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField5);
         PromptSupport.setForeground(Color.GRAY, jTextField5);
 
-        PromptSupport.setPrompt("The number of products", jTextField6);
+        PromptSupport.setPrompt("Status", jTextField6);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField6);
         PromptSupport.setForeground(Color.GRAY, jTextField6);
 
-        PromptSupport.setPrompt("Product information", jTextField7);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField7);
-        PromptSupport.setForeground(Color.GRAY, jTextField7);
+        PromptSupport.setPrompt("Product information", jTextArea);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextArea);
+        PromptSupport.setForeground(Color.GRAY, jTextArea);
 
-        PromptSupport.setPrompt("Image product", jTextField8);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.HIDE_PROMPT, jTextField8);
-        PromptSupport.setForeground(Color.GRAY, jTextField8);
 
         jPanel1.setPreferredSize(new Dimension(700,450));
-        jPanel2.setPreferredSize(new Dimension(300,280));
-        jPanel2.setBackground(Color.GRAY);
+        jPanel2.setPreferredSize(new Dimension(300,300));
+        jPanel2.setBackground(Color.WHITE);
         jTextField1.setPreferredSize(new Dimension(300,30));
+        jTextField1.setEditable(false);
         jTextField2.setPreferredSize(new Dimension(300,30));
+        jTextField2.setEditable(false);
         jTextField3.setPreferredSize(new Dimension(300,30));
+        jTextField3.setEditable(false);
         jTextField4.setPreferredSize(new Dimension(300,30));
+        jTextField4.setEditable(false);
         jTextField5.setPreferredSize(new Dimension(300,30));
+        jTextField5.setEditable(false);
         jTextField6.setPreferredSize(new Dimension(300,30));
-        jTextField7.setPreferredSize(new Dimension(300,30));
-        jTextField8.setPreferredSize(new Dimension(300,30));
-        jButton1.setPreferredSize(new Dimension(150,50));
-        jButton1.addActionListener(insertLaptop2);
-        jButton2.setPreferredSize(new Dimension(150,50));
-        jButton2.addActionListener(insertLaptop2);
+        jTextField6.setEditable(false);
+        jTextArea.setPreferredSize(new Dimension(300,80));
+        jTextArea.setLineWrap(true);
+        jTextArea.setEditable(false);
 
         ImageIcon imageIcon = new ImageIcon("D:\\PictureForJava\\Nenabout.jpg");
         ImageIcon imageIcon1 = new ImageIcon(imageIcon.getImage().getScaledInstance(700,450,Image.SCALE_SMOOTH));
@@ -140,10 +126,7 @@ public class DeleteLaptop extends JFrame {
         jPanel1.add(jTextField4);
         jPanel1.add(jTextField5);
         jPanel1.add(jTextField6);
-        jPanel1.add(jTextField7);
-        jPanel1.add(jTextField8);
-        jPanel1.add(jButton1);
-        jPanel1.add(jButton2);
+        jPanel1.add(jTextArea);
         jPanel1.add(jPanel2);
         this.add(jPanel1);
         jPanel1.add(jLabel);
@@ -176,38 +159,6 @@ public class DeleteLaptop extends JFrame {
 
     public void setLayoutMain(SpringLayout layoutMain) {
         this.layoutMain = layoutMain;
-    }
-
-    public JButton getjButton1() {
-        return jButton1;
-    }
-
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
-    }
-
-    public JButton getjButton2() {
-        return jButton2;
-    }
-
-    public void setjButton2(JButton jButton2) {
-        this.jButton2 = jButton2;
-    }
-
-    public JButton getjButton3() {
-        return jButton3;
-    }
-
-    public void setjButton3(JButton jButton3) {
-        this.jButton3 = jButton3;
-    }
-
-    public JButton getjButton4() {
-        return jButton4;
-    }
-
-    public void setjButton4(JButton jButton4) {
-        this.jButton4 = jButton4;
     }
 
     public JTextField getjTextField1() {
@@ -258,20 +209,12 @@ public class DeleteLaptop extends JFrame {
         this.jTextField6 = jTextField6;
     }
 
-    public JTextField getjTextField7() {
-        return jTextField7;
+    public JTextArea getjTextArea() {
+        return jTextArea;
     }
 
-    public void setjTextField7(JTextField jTextField7) {
-        this.jTextField7 = jTextField7;
-    }
-
-    public JTextField getjTextField8() {
-        return jTextField8;
-    }
-
-    public void setjTextField8(JTextField jTextField8) {
-        this.jTextField8 = jTextField8;
+    public void setjTextArea(JTextArea jTextArea) {
+        this.jTextArea = jTextArea;
     }
 
     public ImageIcon getImageIcon1() {
@@ -283,6 +226,6 @@ public class DeleteLaptop extends JFrame {
     }
 
     public static void main(String[] args) {
-        new DeleteLaptop();
+        new LaptopInformation();
     }
 }

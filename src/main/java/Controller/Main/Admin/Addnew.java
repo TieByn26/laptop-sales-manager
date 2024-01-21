@@ -1,8 +1,11 @@
 package Controller.Main.Admin;
 
 import DAO.LaptopDAO;
+import DAO.StatisticalDAO;
 import Model.Laptop.Laptop;
+import Model.Laptop.Statistical;
 import ViewMain.AdminView.AddLaptop;
+import ViewMain.AdminView.TabShop;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +18,7 @@ public class Addnew implements ActionListener {
     public Addnew(AddLaptop addLaptop) {
         this.addLaptop = addLaptop;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -31,8 +35,9 @@ public class Addnew implements ActionListener {
                 }
             }
             if (count == 0){
+
                 String name = addLaptop.getjTextField2().getText();
-                double price = Double.parseDouble(addLaptop.getjTextField4().getText());
+                double price = Double.parseDouble(addLaptop.getjTextField3().getText());
                 double cprice = Double.parseDouble(addLaptop.getjTextField4().getText());
                 String type = addLaptop.getjTextField5().getText();
                 int quantity = Integer.parseInt(addLaptop.getjTextField6().getText());
@@ -40,9 +45,10 @@ public class Addnew implements ActionListener {
                 String picture =addLaptop.getjTextField8().getText();
                 Laptop newLaptop = new Laptop(ID, name, price, cprice, type, about, quantity, picture);
                 LaptopDAO.getLaptopDAO().insert(newLaptop);
-                list.add(newLaptop);
                 JOptionPane.showMessageDialog(addLaptop,"Add successful","success",JOptionPane.YES_OPTION);
                 addLaptop.repai();
+                Statistical statistical = StatisticalDAO.getStatisticalDAO().select();
+                StatisticalDAO.getStatisticalDAO().update(new Statistical(1, statistical.getSoluongspdaban(), statistical.getTienkiemduoc(), (statistical.getTongtien()-(cprice*quantity))));
             }
         }
     }

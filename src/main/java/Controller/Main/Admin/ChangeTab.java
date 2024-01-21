@@ -1,5 +1,7 @@
 package Controller.Main.Admin;
 
+import DAO.StatisticalDAO;
+import Model.Laptop.Statistical;
 import ViewMain.AdminView.AdminView;
 
 import javax.swing.*;
@@ -43,10 +45,6 @@ public class ChangeTab implements ActionListener, MouseListener {
             adminView.removeTab(adminView.getPanelTam());
             adminView.addTab(adminView.getTabSell());
             adminView.setPanelTam(adminView.getTabSell());
-        } else if (src.equals("Employee")){
-            adminView.removeTab(adminView.getPanelTam());
-            adminView.addTab(adminView.getTabEmployee());
-            adminView.setPanelTam(adminView.getTabEmployee());
         } else if(src.equals("Bill")){
             adminView.removeTab(adminView.getPanelTam());
             adminView.addTab(adminView.getTabBill());
@@ -55,6 +53,10 @@ public class ChangeTab implements ActionListener, MouseListener {
             adminView.removeTab(adminView.getPanelTam());
             adminView.addTab(adminView.getTabStatistical());
             adminView.setPanelTam(adminView.getTabStatistical());
+            Statistical statistical = StatisticalDAO.getStatisticalDAO().select();
+            adminView.getTabStatistical().getjLabel1().setText(String.format("%d",statistical.getSoluongspdaban()));
+            adminView.getTabStatistical().getjLabel2().setText(String.format("%.2f",statistical.getTienkiemduoc()));
+            adminView.getTabStatistical().getjLabel3().setText(String.format("%.2f",statistical.getTongtien()));
         } else if (src.equals("about")){
             JOptionPane.showMessageDialog(adminView,"Version 1.0","About",JOptionPane.OK_CANCEL_OPTION);
         } else {

@@ -130,7 +130,7 @@ public class AddLaptop extends JFrame {
 
         jPanel1.setPreferredSize(new Dimension(700,450));
         jPanel2.setPreferredSize(new Dimension(300,280));
-        jPanel2.setBackground(Color.YELLOW);
+        jPanel2.setBackground(Color.GRAY);
         jTextField1.setPreferredSize(new Dimension(300,30));
         jTextField2.setPreferredSize(new Dimension(300,30));
         jTextField3.setPreferredSize(new Dimension(300,30));
@@ -148,6 +148,10 @@ public class AddLaptop extends JFrame {
         jButton4.setPreferredSize(new Dimension(150,50));
         jButton4.addActionListener(updateLaptop);
 
+        ImageIcon imageIcon = new ImageIcon("D:\\PictureForJava\\Nenabout.jpg");
+        ImageIcon imageIcon1 = new ImageIcon(imageIcon.getImage().getScaledInstance(700,450,Image.SCALE_SMOOTH));
+        JLabel jLabel = new JLabel(imageIcon1);
+
         jPanel1.add(jTextField1);
         jPanel1.add(jTextField2);
         jPanel1.add(jTextField3);
@@ -162,6 +166,7 @@ public class AddLaptop extends JFrame {
         jPanel1.add(jButton4);
         jPanel1.add(jPanel2);
         this.add(jPanel1);
+        jPanel1.add(jLabel);
 
     }
     public void repai(){

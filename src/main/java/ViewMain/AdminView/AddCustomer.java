@@ -95,9 +95,10 @@ public class AddCustomer extends JFrame {
         PromptSupport.setForeground(Color.GRAY, jTextField5);
 
 
+
         jPanel1.setPreferredSize(new Dimension(600,400));
         jPanel2.setPreferredSize(new Dimension(260,260));
-        jPanel2.setBackground(Color.YELLOW);
+        jPanel2.setBackground(Color.GRAY);
         jTextField1.setPreferredSize(new Dimension(300,50));
         jTextField2.setPreferredSize(new Dimension(300,50));
         jTextField3.setPreferredSize(new Dimension(300,50));
@@ -109,6 +110,11 @@ public class AddCustomer extends JFrame {
         jButton2.addActionListener(addCus);
         jButton4.setPreferredSize(new Dimension(150,50));
         jButton4.addActionListener(addCus);
+
+        ImageIcon imageIcon = new ImageIcon("D:\\PictureForJava\\Nenabout.jpg");
+        ImageIcon imageIcon1 = new ImageIcon(imageIcon.getImage().getScaledInstance(700,450,Image.SCALE_SMOOTH));
+        JLabel jLabel = new JLabel(imageIcon1);
+
         jPanel1.add(jTextField1);
         jPanel1.add(jTextField2);
         jPanel1.add(jTextField3);
@@ -119,6 +125,7 @@ public class AddCustomer extends JFrame {
         jPanel1.add(jButton4);
         jPanel1.add(jPanel2);
         this.add(jPanel1);
+        jPanel1.add(jLabel);
 
     }
     public void repai(){

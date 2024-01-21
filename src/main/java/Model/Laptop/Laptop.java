@@ -13,6 +13,11 @@ public class Laptop {
     public Laptop() {
     }
 
+    public Laptop(int ID, int quantity) {
+        this.ID = ID;
+        Quantity = quantity;
+    }
+
     public Laptop(int ID, String name, Double price, Double cprice, String Type, String about, int quantity, String picture) {
         this.ID = ID;
         this.Name = name;

@@ -1,18 +1,27 @@
 package Controller.Main.Admin;
 
+import DAO.BillDAO;
+import DAO.LaptopDAO;
+import Model.Laptop.Bill;
+import Model.Laptop.Laptop;
 import ViewMain.AdminView.AddLaptop;
 import ViewMain.AdminView.DeleteLaptop;
+import ViewMain.AdminView.LaptopInformation;
 import ViewMain.AdminView.TabShop;
 
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.RowFilter;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class SearchLaptop implements DocumentListener, ActionListener {
+public class SearchLaptop implements DocumentListener, ActionListener, ListSelectionListener {
     private TabShop tabShop;
 
     public SearchLaptop(TabShop tabShop) {
@@ -56,6 +65,51 @@ public class SearchLaptop implements DocumentListener, ActionListener {
             new AddLaptop();
         } else if (src.equals("Delete Laptop")){
             new DeleteLaptop();
+        } else {
+            ArrayList<Laptop> list = LaptopDAO.getLaptopDAO().selectAll();
+            tabShop.getModel().setRowCount(0);
+            tabShop.getjTable1().getColumnModel().getColumn(0).setPreferredWidth(100);
+            tabShop.getjTable1().getColumnModel().getColumn(1).setPreferredWidth(500);
+            tabShop.getjTable1().getColumnModel().getColumn(2).setPreferredWidth(250);
+            tabShop.getjTable1().getColumnModel().getColumn(3).setPreferredWidth(250);
+            tabShop.getjTable1().getColumnModel().getColumn(4).setPreferredWidth(250);
+            tabShop.getjTable1().getColumnModel().getColumn(5).setPreferredWidth(100);
+            tabShop.getjTable1().setRowHeight(30);
+            for (Laptop laptop : list){
+                Object[] data = {laptop.getID(),laptop.getName(),laptop.getPrice(),laptop.getCprice(),laptop.getType(),laptop.getQuantity()};
+                tabShop.getModel().addRow(data);
+            }
+            tabShop.getButtonGroup().clearSelection();
+        }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting() && tabShop.getjTable1().getSelectedRow() != -1){
+            LaptopInformation infor = new LaptopInformation();
+            int selectedRow = tabShop.getjTable1().getSelectedRow();
+            String ID1 = String.valueOf(tabShop.getjTable1().getValueAt(selectedRow, 0));
+            int ID = Integer.parseInt(ID1);
+            ArrayList<Laptop> list = LaptopDAO.getLaptopDAO().selectAll();
+            for (Laptop laptop : list){
+                if (laptop.getID() == ID){
+                    infor.getjTextField1().setText(laptop.getID()+"");
+                    infor.getjTextField2().setText(laptop.getName());
+                    infor.getjTextField3().setText(String.format("%.2f",laptop.getPrice()));
+                    infor.getjTextField4().setText(laptop.getType());
+                    infor.getjTextField5().setText(laptop.getQuantity()+"");
+                    if (laptop.getQuantity() > 0){
+                        infor.getjTextField6().setText("Stocking");
+                    }else{
+                        infor.getjTextField6().setText("out of stock");
+                    }
+                    infor.getjTextArea().setText(laptop.getAbout());
+                    ImageIcon imageIcon = new ImageIcon(laptop.getPicture());
+                    ImageIcon imageIcon1 = new ImageIcon(imageIcon.getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH));
+                    JLabel imageLabel = new JLabel(imageIcon1);
+                    infor.getjPanel2().add(imageLabel);
+                }
+            }
         }
     }
 }

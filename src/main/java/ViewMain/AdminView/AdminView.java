@@ -10,7 +10,6 @@ public class AdminView extends JFrame {
     private JButton jButton2;
     private JButton jButton3;
     private JButton jButton4;
-    private JButton jButton5;
     private JButton jButton6;
     private JButton jButton7;
     private JButton jButton8;
@@ -21,12 +20,9 @@ public class AdminView extends JFrame {
     private JPanel panelTam = new JPanel();
     private TabHome tabHome = new TabHome();
     private TabShop tabShop = new TabShop();
-    private TabEmployee tabEmployee = new TabEmployee();
     private TabSell tabSell = new TabSell();
     private TabBill tabBill = new TabBill();
     private TabStatistical tabStatistical = new TabStatistical();
-
-
     private SpringLayout layoutMain = new SpringLayout();
     private SpringLayout layoutClone = new SpringLayout();
     private SpringLayout layoutClone2 = new SpringLayout();
@@ -104,15 +100,9 @@ public class AdminView extends JFrame {
         layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton4,0,SpringLayout.HORIZONTAL_CENTER,panel1);
         jButton4.setPreferredSize(new Dimension(280,50));
         panel1.add(jButton4);
-        jButton5 = new JButton("Employee");
-        setPNGButton(jButton5);
-        layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jButton5,0,SpringLayout.VERTICAL_CENTER,panel1);
-        layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton5,0,SpringLayout.HORIZONTAL_CENTER,panel1);
-        jButton5.setPreferredSize(new Dimension(280,50));
-        panel1.add(jButton5);
         jButton6 = new JButton("Bill");
         setPNGButton(jButton6);
-        layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jButton6,50,SpringLayout.VERTICAL_CENTER,panel1);
+        layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jButton6,0,SpringLayout.VERTICAL_CENTER,panel1);
         layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton6,0,SpringLayout.HORIZONTAL_CENTER,panel1);
         jButton6.setPreferredSize(new Dimension(280,50));
         panel1.add(jButton6);
@@ -130,7 +120,7 @@ public class AdminView extends JFrame {
         panel1.add(jButton8);
         jButton9 = new JButton("Statistical");
         setPNGButton(jButton9);
-        layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jButton9,100,SpringLayout.VERTICAL_CENTER,panel1);
+        layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jButton9,50,SpringLayout.VERTICAL_CENTER,panel1);
         layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jButton9,0,SpringLayout.HORIZONTAL_CENTER,panel1);
         jButton9.setPreferredSize(new Dimension(280,50));
         panel1.add(jButton9);
@@ -150,8 +140,6 @@ public class AdminView extends JFrame {
         layoutClone2.putConstraint(SpringLayout.VERTICAL_CENTER,tabSell,0,SpringLayout.VERTICAL_CENTER,panel2);
         layoutClone2.putConstraint(SpringLayout.HORIZONTAL_CENTER,tabSell,0,SpringLayout.HORIZONTAL_CENTER,panel2);
 
-        layoutClone2.putConstraint(SpringLayout.VERTICAL_CENTER,tabEmployee,0,SpringLayout.VERTICAL_CENTER,panel2);
-        layoutClone2.putConstraint(SpringLayout.HORIZONTAL_CENTER,tabEmployee,0,SpringLayout.HORIZONTAL_CENTER,panel2);
 
         layoutClone2.putConstraint(SpringLayout.VERTICAL_CENTER,tabBill,0,SpringLayout.VERTICAL_CENTER,panel2);
         layoutClone2.putConstraint(SpringLayout.HORIZONTAL_CENTER,tabBill,0,SpringLayout.HORIZONTAL_CENTER,panel2);
@@ -168,8 +156,6 @@ public class AdminView extends JFrame {
         jButton3.addMouseListener(ch);
         jButton4.addActionListener(ch);
         jButton4.addMouseListener(ch);
-        jButton5.addActionListener(ch);
-        jButton5.addMouseListener(ch);
         jButton6.addActionListener(ch);
         jButton6.addMouseListener(ch);
         jButton7.addActionListener(ch);
@@ -187,11 +173,9 @@ public class AdminView extends JFrame {
         jButton2.setIcon(homeIcon);
         ImageIcon shopIcon = new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/shopIcon.png");
         jButton3.setIcon(shopIcon);
-        ImageIcon employeeIcon = new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/employeeIcon.png");
-        jButton4.setIcon(employeeIcon);
-        ImageIcon customerIcon = new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/customerIcon.png");
-        jButton5.setIcon(customerIcon);
-        ImageIcon billIcon= new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/statisticalIcon.png");
+        ImageIcon customerIcon = new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/employeeIcon.png");
+        jButton4.setIcon(customerIcon);
+        ImageIcon billIcon= new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/billicon.png");
         jButton6.setIcon(billIcon);
         ImageIcon aboutIcon = new ImageIcon("C:/Users/ADMIN/Pictures/PicforJv/aboutIcon.png");
         jButton7.setIcon(aboutIcon);
@@ -228,9 +212,7 @@ public class AdminView extends JFrame {
         return jButton1;
     }
 
-    public TabEmployee getTabEmployee() {
-        return tabEmployee;
-    }
+
 
     public TabSell getTabSell() {
         return tabSell;

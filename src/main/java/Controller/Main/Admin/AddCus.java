@@ -59,13 +59,30 @@ public class AddCus implements ActionListener {
             for (Customers customers : list){
                 if (ID == customers.getCusId()){
                     count = 1;
-                    CustomerDAO.getCusDAO().delete(customers);
-                    JOptionPane.showMessageDialog(addCustomer,"Delete successful","success",JOptionPane.YES_OPTION);
+                    JOptionPane.showMessageDialog(addCustomer,"ID not found","error",JOptionPane.ERROR_MESSAGE);
                     break;
                 }
             }
             if (count == 0){
-                JOptionPane.showMessageDialog(addCustomer,"ID not found","error",JOptionPane.ERROR_MESSAGE);
+                int Id = Integer.parseInt(addCustomer.getjTextField1().getText());
+                String Name = addCustomer.getjTextField2().getText();
+                String gender = addCustomer.getjTextField3().getText();
+                String address = addCustomer.getjTextField4().getText();
+                try {
+                    String input = addCustomer.getjTextField5().getText();
+                    String regex = "^[0-9]{10}$";
+                    if (!input.matches(regex)){
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại 10 ký tự số", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        addCustomer.getjTextField5().setText("");
+                    } else {
+                        String phone = addCustomer.getjTextField5().getText();
+                        CustomerDAO.getCusDAO().insert(new Customers(Id,Name,gender,address,phone));
+                        JOptionPane.showMessageDialog(addCustomer,"Add successful","success",JOptionPane.YES_OPTION);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
             }
         }
     }
