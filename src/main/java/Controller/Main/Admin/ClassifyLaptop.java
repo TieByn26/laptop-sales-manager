@@ -30,9 +30,9 @@ public class ClassifyLaptop implements ChangeListener , ActionListener {
         } else if (tabShop.getjCheckBox2().isSelected()) {
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + "Gaming", 4));
         } else if (tabShop.getjCheckBox3().isSelected()) {
-            sorter.setRowFilter(RowFilter.regexFilter("^0$", 5));
-        } else if (tabShop.getjCheckBox4().isSelected()) {
             sorter.setRowFilter(RowFilter.notFilter(RowFilter.regexFilter("^0$", 5)));
+        } else if (tabShop.getjCheckBox4().isSelected()) {
+            sorter.setRowFilter(RowFilter.regexFilter("^0$", 5));
         }
     }
 

@@ -59,7 +59,7 @@ public class AddCus implements ActionListener {
             for (Customers customers : list){
                 if (ID == customers.getCusId()){
                     count = 1;
-                    JOptionPane.showMessageDialog(addCustomer,"ID not found","error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(addCustomer,"ID already exists","error",JOptionPane.ERROR_MESSAGE);
                     break;
                 }
             }
@@ -71,7 +71,10 @@ public class AddCus implements ActionListener {
                 try {
                     String input = addCustomer.getjTextField5().getText();
                     String regex = "^[0-9]{10}$";
-                    if (!input.matches(regex)){
+                    if (!addCustomer.getjTextField1().getText().matches("^[0-9]+$")) {
+                        JOptionPane.showMessageDialog(null, "Chỉ được nhập số", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        addCustomer.getjTextField1().setText("");
+                    }else if (!input.matches(regex)){
                         JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại 10 ký tự số", "Lỗi", JOptionPane.ERROR_MESSAGE);
                         addCustomer.getjTextField5().setText("");
                     } else {

@@ -35,7 +35,6 @@ public class UpdateLaptop implements ActionListener {
                     String picture =addLaptop.getjTextField8().getText();
                     LaptopDAO.getLaptopDAO().update(new Laptop(ID, name,price,cprice,type,about,quantity,picture));
                     JOptionPane.showMessageDialog(addLaptop,"Update successful","success",JOptionPane.YES_OPTION);
-                    
                     break;
                 }
             }

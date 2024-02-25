@@ -101,6 +101,7 @@ public class ViewLog extends JFrame {
             jp.setBackground(new Color(0, 0, 0, 100));
             layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jt,-60,SpringLayout.VERTICAL_CENTER,panel1);
             layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jt,0,SpringLayout.HORIZONTAL_CENTER,panel1);
+
             layoutClone.putConstraint(SpringLayout.VERTICAL_CENTER,jp,-5,SpringLayout.VERTICAL_CENTER,panel1);
             layoutClone.putConstraint(SpringLayout.HORIZONTAL_CENTER,jp,0,SpringLayout.HORIZONTAL_CENTER,panel1);
             jt.setPreferredSize(new Dimension(330,40));

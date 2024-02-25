@@ -62,7 +62,7 @@ public class LaptopInformation extends JFrame {
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextField6,-5,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextField6,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
-        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextArea,65,SpringLayout.VERTICAL_CENTER,jPanel1);
+        layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jTextArea,85,SpringLayout.VERTICAL_CENTER,jPanel1);
         layoutMain.putConstraint(SpringLayout.HORIZONTAL_CENTER,jTextArea,170,SpringLayout.HORIZONTAL_CENTER,jPanel1);
 
         layoutMain.putConstraint(SpringLayout.VERTICAL_CENTER,jPanel2,-45,SpringLayout.VERTICAL_CENTER,jPanel1);
@@ -112,7 +112,7 @@ public class LaptopInformation extends JFrame {
         jTextField5.setEditable(false);
         jTextField6.setPreferredSize(new Dimension(300,30));
         jTextField6.setEditable(false);
-        jTextArea.setPreferredSize(new Dimension(300,80));
+        jTextArea.setPreferredSize(new Dimension(300,130));
         jTextArea.setLineWrap(true);
         jTextArea.setEditable(false);
 
